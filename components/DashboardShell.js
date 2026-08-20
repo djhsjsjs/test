@@ -1,2 +1,0 @@
-import Sidebar from "./Sidebar";
-export default function DashboardShell({children,active}){return <div className="appShell"><Sidebar active={active}/><main className="main"><header className="topbar"><span className="muted">Personal workspace</span><a href="/profile"><div className="avatar">U</div></a></header>{children}</main></div>}
