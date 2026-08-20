@@ -1,7 +1,0 @@
- "use client";
-import {useState} from "react";
-export default function Register(){
- const [email,setEmail]=useState(""),[done,setDone]=useState(false);
- function submit(e){e.preventDefault();if(!email)return;localStorage.setItem("dealcheck:user",JSON.stringify({email}));setDone(true)}
- return <div className="auth"><div className="authCard"><a className="brand" href="/">DEAL<span>CHECK</span></a>{done?<><h1>You're in.</h1><p className="muted">Your workspace is ready. This lightweight version stores your profile and history in this browser; connect a production auth/database provider before launch.</p><a className="btn btn-dark" style={{width:"100%"}} href="/dashboard">Open dashboard →</a></>:<><h1>Keep your checks.</h1><p className="muted">Enter your email to continue. No Google sign-in required.</p><form onSubmit={submit}><div className="field"><label className="label">Email</label><input className="input" type="email" required value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@example.com"/></div><label className="check"><input type="checkbox" required/> I agree to the Terms and Privacy Policy.</label><button className="btn btn-dark" style={{width:"100%"}}>Create my workspace →</button></form></>}</div></div>
-}
