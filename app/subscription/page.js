@@ -1,0 +1,8 @@
+ "use client";
+import {useState} from "react";
+import DashboardShell from "../../components/DashboardShell";
+export default function Subscription(){
+ const [loading,setLoading]=useState(false);
+ async function checkout(){setLoading(true);try{const email=JSON.parse(localStorage.getItem("dealcheck:user")||"{}").email||"";const r=await fetch("/api/stripe/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email})});const d=await r.json();if(!r.ok)throw Error(d.error);location.href=d.url}catch(e){alert(e.message)}finally{setLoading(false)}}
+ return <DashboardShell active="Subscription"><div className="content"><div className="eyebrow">Membership</div><h1 style={{fontFamily:"var(--font-serif)",fontSize:58,margin:"8px 0 10px"}}>Simple, useful, premium.</h1><p className="sectionLead">Start free. Upgrade when you want deeper research and more saved analyses.</p><div className="card" style={{maxWidth:650,marginTop:25}}><div className="pill" style={{display:"inline-block"}}>DEALCHECK PRO</div><h2 style={{fontSize:40,margin:"15px 0 5px"}}>$2.99</h2><div className="muted">per subscription period configured in Stripe</div><ul style={{lineHeight:2,color:"#666"}}><li>More detailed market research</li><li>More analyses and saved products</li><li>Price comparison and buying recommendations</li><li>History and product tracking foundation</li></ul><button className="btn btn-dark" onClick={checkout} disabled={loading}>{loading?"Opening checkout…":"Upgrade →"}</button><p className="helper">The exact billing interval is controlled by your Stripe Price ID.</p></div></div></DashboardShell>
+}
