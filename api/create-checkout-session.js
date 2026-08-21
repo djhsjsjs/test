@@ -71,6 +71,9 @@ module.exports = async function handler(req, res) {
       },
       billing_address_collection: 'auto',
       customer_update: { name: 'auto', address: 'auto' },
+      consent_collection: {
+  terms_of_service: 'required'
+},
       custom_text: {
         submit: {
           message: 'You pay $0.99 today. Your 3-day Premium trial starts immediately. After 3 days, $35/month will be charged automatically until you cancel.'
